@@ -21,9 +21,9 @@ export class LoginComponent{
   }
 
   login(){
-    // alert('Wrking')
     var acno = this.acno
     var psw = this.psw
+    
     var userDetails = this.userDetails
     if(acno in userDetails)
     {
@@ -53,4 +53,26 @@ export class LoginComponent{
     
   }
 
+
+// login(acn:any,ps:any){
+//   var acno = acn.value
+//   var psw = ps.value
+//   // console.log(acno.value);
+  
+//   var userDetails = this.userDetails
+//   if(acno in userDetails)
+//   {
+//     if(psw==userDetails[acno]["password"]){
+//       alert("Login Success")
+
+//     }
+//     else{
+//       alert("Incorrect password")
+//     }
+//   }
+//   else{
+//     alert("Incorrect username")
+//   }
+
+// }
 }
