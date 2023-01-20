@@ -20,3 +20,30 @@ html - view
 2-Two way binding
 
     2.1 ngmodel     FormsModule     [(ngmodel)]="value"
+
+
+
+Redirection in Angular
+-----------------------
+
+navigateByUrl - method used to redirect 
+
+Router - class
+
+AppRoutingModule - module 
+
+
+
+Dependency Injection
+---------------------
+- to use a method of class in another class
+- in constructor
+steps 
+access specifier - public or private
+variable
+classname
+constructor(private variable:Classname){}
+
+Angular Services
+-----------------
+
