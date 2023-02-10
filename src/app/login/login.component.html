@@ -4,16 +4,16 @@
 <div class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Sign in</h1>
-    <form action="" class="container w-75 text-center mt-4">
+    <form (ngSubmit)="login()" action="" class="container w-75 text-center mt-4">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="acno" name="acno" id="acid" [placeholder]="data">
+            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="acno" name="acno" id="acid" [placeholder]="data" Required>
             <label for="acid">Account Number</label>
           </div>
           <div class="form-floating">
             <input type="password" class="form-control rounded-0" id="pid" [(ngModel)]="psw" name="psw" placeholder="Password">
             <label for="pid">Password</label>
           </div>
-        <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-3" (click)="login()">Sign in</button>
+        <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-3">Sign in</button>
         <div class="text-center mt-2">
             <p>Not a member? <a routerLink="register">Register</a></p>
             <br>

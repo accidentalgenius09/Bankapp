@@ -8,6 +8,9 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
+  navigateByUrl(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   aim="Your perfect banking partner"
   data='Account Number'
   acno:any

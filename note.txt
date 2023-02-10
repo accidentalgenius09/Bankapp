@@ -47,3 +47,19 @@ constructor(private variable:Classname){}
 Angular Services
 -----------------
 
+- common data 
+- create a folder services in app folder 
+- ng g s servicename/variable 
+
+Angular Directives
+-------------------
+
+1. Structural Directives - to handle structured data in view of a component
+    -ngFor - for using forloop directly in html
+
+
+Form Validation in Angular
+--------------------------
+
+1. Template Driven Form
+2. Model Driven Form

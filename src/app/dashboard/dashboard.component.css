@@ -1,0 +1,17 @@
+.bgclr{
+    background-color: rgba(256, 256, 256, 0.2);
+
+}
+h2{
+    color: white;
+    margin-left: 2%;
+    margin-bottom: 1%;
+}
+a{
+    size: 3px;
+    text-decoration: none;
+    color: white;
+    border-radius: 25px;
+    background-color: rgba(256, 256, 256, 0.2);
+
+}

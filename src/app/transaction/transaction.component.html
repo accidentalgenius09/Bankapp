@@ -1,0 +1,13 @@
+<table class=" container w-50 text-center mt-5 border">
+    <thead class="border">
+        <th>Transaction type</th>
+        <th>Transaction amount</th>
+    </thead>
+    <tbody>
+        <tr class="border" *ngFor="let i of transaction">
+            <td class="border">{{i.type}}</td>
+            <td>{{i.amount}}</td>
+        </tr>
+    </tbody>
+</table>
+
