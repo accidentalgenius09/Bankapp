@@ -85,4 +85,11 @@ Form Validation in Angular
 
                             -valid  -empty response
                             -invalid -content
-         
+
+Local Storage in angular
+-------------------------
+
+- store     localStorage.setItem()
+- access    localStorage.getItem()
+- delete    localStorage.removeItem()
+

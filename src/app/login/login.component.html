@@ -16,7 +16,7 @@
             <input type="password" class="form-control rounded-0" id="pid" formControlName="psw" name="psw" placeholder="Password">
             <label for="pid">Password</label>
           </div>
-          <div *ngIf="this.loginForm.get('psw')?.touched">
+          <div *ngIf="this.loginForm.get('psw')?.touched && this.loginForm.get('psw')?.errors">
             <p class="text-danger"><small>Enter Password</small></p>
           </div>
           <div class="text-center">

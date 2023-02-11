@@ -44,7 +44,7 @@
 <div class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Withdraw</h1>
-    <form (ngSubmit)="withdraw()" [formGroup]="dashForm" action="" class="container w-75 text-center mt-4">
+    <form (ngSubmit)="withdraw()" [formGroup]="dashForm" action="" class="container w-75 mt-4">
         <div class="form-floating mb-3">
             <input type="text" class="form-control rounded-0 mt-4" formControlName="acntno" name="acno" id="acid" placeholder="udata">
             <label for="acid">Account Number</label>
@@ -70,6 +70,8 @@
         <div *ngIf="this.dashForm.get('amt')?.errors && this.dashForm.get('amt')?.touched">
             <p class="text-danger"><small>Enter a valid amount</small></p>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-4">Withdraw</button>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-4">Withdraw</button>
+        </div>
     </form>
 </div>

@@ -18,22 +18,27 @@ export class DashboardComponent {
   constructor(private ds:DataService, private fb:FormBuilder){
     this.user=this.ds.currentuser
   }
-  dashForm=this.fb.group({amnt:['',[Validators.required,Validators.pattern('[0-9]+')]],acno:['',[Validators.required,Validators.pattern('[0-9]')]],psw:[''],acntno:['',[Validators.required,Validators.pattern('[0-9]')]],pswd:[''],amt:['',[Validators.required,Validators.pattern('[0-9]')]]})
+  dashForm=this.fb.group({amnt:['',[Validators.required,Validators.pattern('[0-9]+')]],acno:['',[Validators.required,Validators.pattern('[0-9]+')]],psw:[''],acntno:['',[Validators.required,Validators.pattern('[0-9]+')]],pswd:[''],amt:['',[Validators.required,Validators.pattern('[0-9]+')]]})
 
   deposit(){
     var amnt=this.dashForm.value.amnt
     var acno=this.dashForm.value.acno
     var psw=this.dashForm.value.psw
-     var res=this.ds.deposit(acno,psw,amnt)
+    if(this.dashForm.valid){
+      var res=this.ds.deposit(acno,psw,amnt)
      
-     if(res){
-      alert(`Rs:${amnt} deposited successfully. Updated balance is Rs:${res}`)
-      // console.log(res);
-      
-     } 
-     else{
-      alert("Check account number or password")
-     }    
+      if(res){
+       alert(`Rs:${amnt} deposited successfully. Updated balance is Rs:${res}`)
+       // console.log(res);
+       
+      } 
+      else{
+       alert("Check account number or password")
+      } 
+    } 
+    else{
+      alert('Invalid Inputs')
+    }  
   }
 
 
@@ -41,11 +46,19 @@ export class DashboardComponent {
     var amt=this.dashForm.value.amt
     var acntno=this.dashForm.value.acntno
     var pswd=this.dashForm.value.pswd
-    var wid=this.ds.withdraw(acntno,pswd,amt)
+    if(this.dashForm.valid){
+      var wid=this.ds.withdraw(acntno,pswd,amt)
     // console.log(wid)
     if(wid){
       alert(`Rs:${amt} withdrawed successfully. Updated balance is Rs:${wid}`)
     } 
+    else{
+      alert('Check Account number or password')
+    }
+    }
+    else{
+      alert('Invalid inputs')
+    }
   }
 
 }
