@@ -56,6 +56,7 @@ Angular Directives
 
 1. Structural Directives - to handle structured data in view of a component
     -ngFor - for using forloop directly in html
+    -ngIf
 
 
 Form Validation in Angular
@@ -63,3 +64,25 @@ Form Validation in Angular
 
 1. Template Driven Form
 2. Model Driven Form
+        -Reactive Form
+        ---------------
+        
+            ReactiveFormsModule - module used to create model forms
+            FormBuilder - class of ReactiveFormsModule
+
+                -group,array,control 
+            
+            Validate Model Form
+            -------------------
+
+            Validator - inbuild class in angular which includes methods for validation 
+            pattern('[]') --> + means 1 to unlimited,* means 0-unlimted {a,b} means min a and max b, ^ except
+
+
+            error accessing in Validator routerLink
+            ----------------------------------------
+            this.randomForm.get('uname)?.error
+
+                            -valid  -empty response
+                            -invalid -content
+         

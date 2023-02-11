@@ -7,22 +7,33 @@
 <div class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Deposit</h1>
-    <form (ngSubmit)="deposit()" action="" class="container w-75 text-center mt-4">
+    <form (ngSubmit)="deposit()" action="" class="container w-75 mt-4" [formGroup]="dashForm">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="acno" name="acno" id="acid" placeholder="udata">
+            <input type="text" class="form-control rounded-0 mt-4" formControlName="acno" name="acno" id="acid" placeholder="udata">
             <label for="acid">Account Number</label>
+        </div>
+        <div *ngIf="this.dashForm.get('acno')?.errors && this.dashForm.get('acno')?.touched">
+            <p class="text-danger"><small>Invalid Account Number</small></p>
         </div>
 
         <div class="form-floating">
-            <input type="password" class="form-control rounded-0" id="pid" name="psw" [(ngModel)]="psw" placeholder="Password">
+            <input type="password" class="form-control rounded-0" id="pid" name="psw" formControlName="psw" placeholder="Password">
             <label for="pid">Password</label>
+        </div>
+        <div *ngIf="this.dashForm.get('psw')?.touched">
+            <p><small></small></p>
         </div>
 
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="amnt" name="amnt" id="amtid" placeholder="amt">
+            <input type="text" class="form-control rounded-0 mt-4" formControlName="amnt" name="amnt" id="amtid" placeholder="amt">
             <label for="amtid">Amount</label>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-4">Deposit</button>
+        <div *ngIf="this.dashForm.get('amnt')?.errors && this.dashForm.get('amnt')?.touched">
+            <p class="text-danger"><small>Enter a valid amount</small></p>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-4">Deposit</button>
+        </div>
     </form>
 </div>
 
@@ -33,20 +44,31 @@
 <div class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Withdraw</h1>
-    <form (ngSubmit)="withdraw()" action="" class="container w-75 text-center mt-4">
+    <form (ngSubmit)="withdraw()" [formGroup]="dashForm" action="" class="container w-75 text-center mt-4">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="acntno" name="acno" id="acid" placeholder="udata">
+            <input type="text" class="form-control rounded-0 mt-4" formControlName="acntno" name="acno" id="acid" placeholder="udata">
             <label for="acid">Account Number</label>
         </div>
-
-        <div class="form-floating">
-            <input type="password" class="form-control rounded-0" id="pid" name="psw" [(ngModel)]="pswd" placeholder="Password">
-            <label for="pid">Password</label>
+        <div *ngIf="this.dashForm.get('acntno')?.errors && this.dashForm.get('acntno')?.touched">
+            <p class="text-danger"><small>Invalid Account Number</small></p>
         </div>
 
+
+        <div class="form-floating">
+            <input type="password" class="form-control rounded-0" id="pid" name="psw" formControlName="pswd" placeholder="Password">
+            <label for="pid">Password</label>
+        </div>
+        <div *ngIf="this.dashForm.get('pswd')?.touched">
+            <p><small></small></p>
+        </div>
+
+
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="amt" name="amnt" id="amtid" placeholder="amt">
+            <input type="text" class="form-control rounded-0 mt-4" formControlName="amt" name="amnt" id="amtid" placeholder="amt">
             <label for="amtid">Amount</label>
+        </div>
+        <div *ngIf="this.dashForm.get('amt')?.errors && this.dashForm.get('amt')?.touched">
+            <p class="text-danger"><small>Enter a valid amount</small></p>
         </div>
         <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-4">Withdraw</button>
     </form>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -7,21 +8,22 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  amnt:any
-  acno:any
-  psw:any
-  acntno:any
-  pswd:any
-  amt:any
+  // amnt:any
+  // acno:any
+  // psw:any
+  // acntno:any
+  // pswd:any
+  // amt:any
   user:any
-  constructor(private ds:DataService){
+  constructor(private ds:DataService, private fb:FormBuilder){
     this.user=this.ds.currentuser
   }
+  dashForm=this.fb.group({amnt:['',[Validators.required,Validators.pattern('[0-9]+')]],acno:['',[Validators.required,Validators.pattern('[0-9]')]],psw:[''],acntno:['',[Validators.required,Validators.pattern('[0-9]')]],pswd:[''],amt:['',[Validators.required,Validators.pattern('[0-9]')]]})
 
   deposit(){
-    var amnt=this.amnt
-    var acno=this.acno
-    var psw=this.psw
+    var amnt=this.dashForm.value.amnt
+    var acno=this.dashForm.value.acno
+    var psw=this.dashForm.value.psw
      var res=this.ds.deposit(acno,psw,amnt)
      
      if(res){
@@ -36,9 +38,9 @@ export class DashboardComponent {
 
 
   withdraw(){
-    var amt=this.amt
-    var acntno=this.acntno
-    var pswd=this.pswd
+    var amt=this.dashForm.value.amt
+    var acntno=this.dashForm.value.acntno
+    var pswd=this.dashForm.value.pswd
     var wid=this.ds.withdraw(acntno,pswd,amt)
     // console.log(wid)
     if(wid){

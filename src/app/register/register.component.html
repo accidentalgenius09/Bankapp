@@ -1,19 +1,27 @@
 <div class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Registration Page</h1>
-    <form action="" class="container w-75 text-center mt-4">
+    <form (ngSubmit)="register()" action="" class=" container w-75 mt-4" [formGroup]="registerForm">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="uname" name="acno" id="acid" placeholder="udata">
+            <input type="text" class="form-control rounded-0 mt-4" name="acno" formControlName="uname" id="acid" placeholder="udata">
             <label for="acid">Username</label>
         </div>
+        <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+            <p class="text-danger"><small>Incorrect Username</small></p>
+        </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="acno" name="acno" id="acid" placeholder="data">
+            <input type="text" class="form-control rounded-0 mt-4" name="acno" formControlName="acno" id="acid" placeholder="data">
             <label for="acid">Account Number</label>
         </div>
+        <div *ngIf="this.registerForm.get('acno')?.errors && this.registerForm.get('acno')?.touched">
+            <p class="text-danger"><small>Incorrect Account Number</small></p>
+        </div>
         <div class="form-floating">
-            <input type="password" class="form-control rounded-0" id="pid" name="psw" [(ngModel)]="psw" placeholder="Password">
+            <input type="password" class="form-control rounded-0" formControlName="psw" id="pid" name="psw" placeholder="Password">
             <label for="pid">Password</label>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-4" (click)="register()">Register</button>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-4" (click)="register()">Register</button>
+        </div>
     </form>
 </div>

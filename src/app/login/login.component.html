@@ -4,16 +4,24 @@
 <div class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Sign in</h1>
-    <form (ngSubmit)="login()" action="" class="container w-75 text-center mt-4">
+    <form (ngSubmit)="login()" action="" class="container w-75 mt-4" [formGroup]="loginForm">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-0 mt-4" [(ngModel)]="acno" name="acno" id="acid" [placeholder]="data" Required>
+            <input type="text" class="form-control rounded-0 mt-4" formControlName="acno" name="acno" id="acid" [placeholder]="data" Required>
             <label for="acid">Account Number</label>
           </div>
+          <div *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched">
+            <p class="text-danger"><small>Invalid Account Number</small></p>
+          </div>
           <div class="form-floating">
-            <input type="password" class="form-control rounded-0" id="pid" [(ngModel)]="psw" name="psw" placeholder="Password">
+            <input type="password" class="form-control rounded-0" id="pid" formControlName="psw" name="psw" placeholder="Password">
             <label for="pid">Password</label>
           </div>
-        <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-3">Sign in</button>
+          <div *ngIf="this.loginForm.get('psw')?.touched">
+            <p class="text-danger"><small>Enter Password</small></p>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-4 text-center w-50 rounded-0 mb-3">Sign in</button>
+          </div>
         <div class="text-center mt-2">
             <p>Not a member? <a routerLink="register">Register</a></p>
             <br>
