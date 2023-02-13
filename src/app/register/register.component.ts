@@ -15,7 +15,7 @@ export class RegisterComponent {
   // uname:any
   constructor(private ds : DataService, private router:Router, private fb:FormBuilder){}
 
-  registerForm=this.fb.group({uname:['',[Validators.required,Validators.pattern('[a-zA-Z]+')]],acno:['',[Validators.required,Validators.pattern('[0-9]+6yyy')]],psw:['']})
+  registerForm=this.fb.group({uname:['',[Validators.required,Validators.pattern('[a-zA-Z]+')]],acno:['',[Validators.required,Validators.pattern('[0-9]+')]],psw:['']})
 
 
   register(){
@@ -27,6 +27,7 @@ export class RegisterComponent {
       if(res)
       {
         alert('User created successfully')
+      
         this.router.navigateByUrl('')
       }
       else{

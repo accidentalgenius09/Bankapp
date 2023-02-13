@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class DashboardComponent {
   // pswd:any
   // amt:any
   user:any
-  constructor(private ds:DataService, private fb:FormBuilder){
+  constructor(private ds:DataService, private fb:FormBuilder, private router:Router){
     this.user=this.ds.currentuser
   }
   dashForm=this.fb.group({amnt:['',[Validators.required,Validators.pattern('[0-9]+')]],acno:['',[Validators.required,Validators.pattern('[0-9]+')]],psw:[''],acntno:['',[Validators.required,Validators.pattern('[0-9]+')]],pswd:[''],amt:['',[Validators.required,Validators.pattern('[0-9]+')]]})
@@ -59,6 +60,12 @@ export class DashboardComponent {
     else{
       alert('Invalid inputs')
     }
+  }
+
+  logout(){
+    localStorage.removeItem('currentuser')
+    localStorage.removeItem('currentacnt')
+    this.router.navigateByUrl('')
   }
 
 }
