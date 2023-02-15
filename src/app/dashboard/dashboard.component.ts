@@ -10,17 +10,24 @@ import { DataService } from '../services/data.service';
 })
 export class DashboardComponent {
   // amnt:any
-  // acno:any
+  acno:any
   // psw:any
   // acntno:any
   // pswd:any
+  dateNtime:any
   // amt:any
   user:any
   constructor(private ds:DataService, private fb:FormBuilder, private router:Router){
     this.user=this.ds.currentuser
+    this.dateNtime=new Date()
   }
   dashForm=this.fb.group({amnt:['',[Validators.required,Validators.pattern('[0-9]+')]],acno:['',[Validators.required,Validators.pattern('[0-9]+')]],psw:[''],acntno:['',[Validators.required,Validators.pattern('[0-9]+')]],pswd:[''],amt:['',[Validators.required,Validators.pattern('[0-9]+')]]})
-
+  ngOnInit(): void{
+    if(!localStorage.getItem('currentacnt')){
+      alert("Please Login 1st")
+      this.router.navigateByUrl('')
+    }
+  }
   deposit(){
     var amnt=this.dashForm.value.amnt
     var acno=this.dashForm.value.acno
@@ -66,6 +73,10 @@ export class DashboardComponent {
     localStorage.removeItem('currentuser')
     localStorage.removeItem('currentacnt')
     this.router.navigateByUrl('')
+  }
+
+  delete(){
+    this.acno=JSON.parse(localStorage.getItem('currentacnt') || '')
   }
 
 }

@@ -3,10 +3,16 @@
                                                     <!-- Deposit -->
 
 <h2>Welcome {{user}}</h2>
+<p class="text-white mx-4">{{dateNtime | date  : 'medium'}}</p>
 <a routerLink="/transaction" class="p-3 m-3">Transaction History</a>
 <button class="btn btn-primary float-right" type="submit" (click)="logout()">Logout</button>
+<button class="btn btn-primary m-3" type="submit" (click)="delete()">Delete Account</button>
 
-<div class="container w-50 bgclr mt-5 rounded">
+
+<app-deleteconfirm [item]="acno"></app-deleteconfirm>
+
+
+<div [ngClass]="acno?'style':''" class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Deposit</h1>
     <form (ngSubmit)="deposit()" action="" class="container w-75 mt-4" [formGroup]="dashForm">
@@ -43,7 +49,7 @@
                                                              <!-- Withdraw -->
 
 <br><br><br><br>
-<div class="container w-50 bgclr mt-5 rounded">
+<div [ngClass]="acno?'style':''" class="container w-50 bgclr mt-5 rounded">
     <br>
     <h1 class="text-center text-white" style="font-family: 'Public Sans', sans-serif;">Withdraw</h1>
     <form (ngSubmit)="withdraw()" [formGroup]="dashForm" action="" class="container w-75 mt-4">

@@ -55,9 +55,13 @@ Angular Directives
 -------------------
 
 1. Structural Directives - to handle structured data in view of a component
+
     -ngFor - for using forloop directly in html
     -ngIf
 
+2. Component Directives
+
+3. Attribute Directives
 
 Form Validation in Angular
 --------------------------
@@ -92,4 +96,14 @@ Local Storage in angular
 - store     localStorage.setItem()
 - access    localStorage.getItem()
 - delete    localStorage.removeItem()
+
+Parent Child Component communication in Angular
+-----------------------------------------------
+
+Date & Time in Angular
+----------------------
+
+Date    - class
+
+- create an object of the class Date to access Date and Time
 
