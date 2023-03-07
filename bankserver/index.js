@@ -85,25 +85,28 @@ app.post('/login',(req,res)=>{
 //deposit
 app.post('/deposit',jwtmiddleware,(req,res)=>{
 
-    const result= dataservice.deposit(req.body.acno,req.body.psw,req.body.amnt)
+    dataservice.deposit(req.body.acno,req.body.psw,req.body.amnt).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
 
-    res.status(result.statusCode).json(result)
 })
 
 //withdraw
 app.post('/withdraw',jwtmiddleware,(req,res)=>{
 
-    const result= dataservice.withdraw(req.body.acntno,req.body.pswd,req.body.amt)
+    dataservice.withdraw(req.body.acntno,req.body.pswd,req.body.amt).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
 
-    res.status(result.statusCode).json(result)
 })
 
 //gettransaction
 app.post('/transaction',jwtmiddleware,(req,res)=>{
 
-    const result= dataservice.gettransaction(req.body.acno1)
+    dataservice.gettransaction(req.body.acno1).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
 
-    res.status(result.statusCode).json(result)
 })
 
 //create port number
