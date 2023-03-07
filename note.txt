@@ -100,6 +100,12 @@ Local Storage in angular
 Parent Child Component communication in Angular
 -----------------------------------------------
 
+@Input //decorator  - parent to child data sharing
+@Output - child to parent data sharing
+
+datas only share via selector component
+
+
 Date & Time in Angular
 ----------------------
 
@@ -107,3 +113,24 @@ Date    - class
 
 - create an object of the class Date to access Date and Time
 
+
+User Defined Event Creation
+---------------
+- create an object of EventEmitter class
+ eventname= new EventEmitter()
+ emit()  - to start the event
+
+
+ Angular Pipe
+ ------------
+
+ to transform data into another format
+    eg- date pipe
+
+When cloning project node module won't be there to get node modules:
+                npm i
+
+
+Package.json creation
+---------------------
+npm init 

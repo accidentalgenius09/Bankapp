@@ -78,5 +78,8 @@ export class DashboardComponent {
   delete(){
     this.acno=JSON.parse(localStorage.getItem('currentacnt') || '')
   }
+  oncancel(){
+    this.acno=''
+  }
 
 }
