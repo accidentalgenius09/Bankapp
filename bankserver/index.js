@@ -1,3 +1,6 @@
+//import CORS
+const cors = require('cors')
+
 //import dataService file from service folder
 const dataservice = require('./service/dataService')
 
@@ -10,6 +13,9 @@ const { json } = require('express')
 
 //create an app using express
 const app=express()
+
+// connect frontend
+app.use(cors({origin:'http://localhost:4200/'}))
 
 //to convert json data
 app.use(express.json())

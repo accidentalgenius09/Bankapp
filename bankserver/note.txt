@@ -112,3 +112,8 @@ server mongoDB integration
 // 4. export the schema to use in other files
 
 
+Frontend-Backend integration
+----------------------------
+
+angular and node integration module - CROS (cross origin resourse sharing)
+        - npm i cors

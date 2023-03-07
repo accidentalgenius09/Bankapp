@@ -134,3 +134,13 @@ When cloning project node module won't be there to get node modules:
 Package.json creation
 ---------------------
 npm init 
+
+
+Client server Integration
+-------------------------
+-------------------------
+
+http request Creation
+---------------------
+
+HttpClientModule
