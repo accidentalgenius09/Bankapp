@@ -77,55 +77,27 @@ register = (acno, uname, psw) => {
   })
 }
 
-
-  // if (acno in userDetails) {
-  //   return {
-  //     statusCode: 401,
-  //     status: false,
-  //     message: "User Already Exist",
-  //   };
-  // } else {
-    // userDetails[acno] = {
-    //   acno: acno,
-    //   username: uname,
-    //   password: psw,
-    //   balance: 0,
-    //   transaction: [],
-    // };
-    // console.log(userDetails);
-//     return {
-//       statusCode: 200,
-//       status: true,
-//       message: "Registration Success",
-//     };
-//   }
-// };
-
 login = (acno, psw) => {
-  if (acno in userDetails) {
-    if (psw == userDetails[acno]["password"]) {
-        const token = jwt.sign({currentAcno:acno},'secretkey123')
+
+  return db.User.findOne({acno,password:psw}).then(user=>{
+    if(user){
+      const token = jwt.sign({currentAcno:acno},'secretkey123')
       return {
         statusCode: 200,
         status: true,
         message: "Login Success",
         token
       };
-    } else {
+    }
+    else{
       return {
         statusCode: 401,
         status: false,
-        message: "Incorrect Password",
+        message: "Incorrect Password or Account number",
       };
     }
-  } else {
-    return {
-      statusCode: 401,
-      status: false,
-      message: "User not found",
-    };
-  }
-};
+  })
+}
 
 deposit = (acno,psw,amnt) => {
   var amt = parseInt(amnt);

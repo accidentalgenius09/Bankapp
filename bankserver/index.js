@@ -77,9 +77,9 @@ app.post('/register',(req,res)=>{
 //login
 app.post('/login',(req,res)=>{
 
-    const result= dataservice.login(req.body.acno,req.body.psw)
-
-    res.status(result.statusCode).json(result)
+    dataservice.login(req.body.acno,req.body.psw).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
 })
 
 //deposit
