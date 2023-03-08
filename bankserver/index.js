@@ -15,7 +15,7 @@ const { json } = require('express')
 const app=express()
 
 // connect frontend
-app.use(cors({origin:'http://localhost:4200/'}))
+app.use(cors({origin:'http://localhost:4200'}))
 
 //to convert json data
 app.use(express.json())

@@ -140,7 +140,35 @@ Client server Integration
 -------------------------
 -------------------------
 
-http request Creation
+http/api request Creation
 ---------------------
 
-HttpClientModule
+HttpClientModule  -module
+HttpClient        -class
+
+
+Asynchronous requests in TS 
+---------------------------
+
+In Javascript - we use promise, we get 2 o/ps   -- resolved o/p -then()
+                                                -- rejected o/p - catch()
+
+
+In TS - observable - resolve -- subscribe()
+                   -reject -- catch()
+
+
+Rxjs (Reactive Extension For Js)  - library used to solve asynchronous code in ts
+
+
+Append token in headers of api 
+------------------------------
+
+create header
+
+    HttpHeaders - class for creating header object 
+
+        -     let headers=new HttpHeaders()
+
+Append token in header object
+        -   headers.append('access-token',token)

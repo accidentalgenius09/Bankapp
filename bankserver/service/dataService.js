@@ -41,6 +41,8 @@ login = (acno, psw) => {
         statusCode: 200,
         status: true,
         message: "Login Success",
+        currentAcno:acno,
+        currentUser:user.username,
         token
       };
     }

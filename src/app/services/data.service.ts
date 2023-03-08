@@ -1,4 +1,11 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+
+// header global overloading
+const option={
+  headers:new HttpHeaders()
+}
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +15,7 @@ export class DataService {
   currentuser:any
   currentaccount:any
 
-  constructor() { 
-    this.getdetails()
+  constructor(private http:HttpClient) { 
   }
 
    savedetails(){
@@ -24,17 +30,17 @@ export class DataService {
    }
   }
 
-  getdetails(){
-    if(localStorage.getItem('database')){
-      this.userDetails=JSON.parse(localStorage.getItem('database') || '')
-    }
-    if(localStorage.getItem('currentuser')){
-      this.currentuser=JSON.parse(localStorage.getItem('currentuser') || '')
-    }
-    if(localStorage.getItem('currentacnt')){
-      this.currentaccount=JSON.parse(localStorage.getItem('currentacnt') || '')
-    }
-  }
+  // getdetails(){
+  //   if(localStorage.getItem('database')){
+  //     this.userDetails=JSON.parse(localStorage.getItem('database') || '')
+  //   }
+  //   if(localStorage.getItem('currentuser')){
+  //     this.currentuser=JSON.parse(localStorage.getItem('currentuser') || '')
+  //   }
+  //   if(localStorage.getItem('currentacnt')){
+  //     this.currentaccount=JSON.parse(localStorage.getItem('currentacnt') || '')
+  //   }
+  // }
 
   // userDetails:any={
   //   1000:{acno:1000,username:'Surjith',password:123,balance:0,transaction:[]},
@@ -45,86 +51,49 @@ export class DataService {
   //   1005:{acno:1005,username:'Vyshnavi',password:12345678,balance:0,transaction:[]},
   // }
 
+  gettoken(){
+    const token =JSON.parse(localStorage.getItem('token') || '')
+
+    let headers=new HttpHeaders()
+
+    if(token){
+      option.headers=headers.append('access-token',token)
+    }
+
+    return option
+  }
+
   register(acno:any,uname:any,psw:any){
 
-    var userDetails = this.userDetails
-    if(acno in userDetails){
-      return false
+    const data={
+      acno,
+      uname,
+      psw
     }
-    else{
-      userDetails[acno]={acno:acno,username:uname,password:psw,balance:0,transaction:[]}
-      // console.log(userDetails);
-      this.savedetails()
-      return true
-    }
+    return this.http.post('http://localhost:3000/register',data)
 
   }
   login(acno:any,psw:any){
-
-    var userDetails=this.userDetails
-    if(acno  in userDetails){
-      if(psw==userDetails[acno]["password"]){
-        this.currentuser=userDetails[acno]['username']
-        // this.currentaccount=userDetails[acno]
-        this.currentaccount=acno
-        this.savedetails()
-        return true
-      }
-      else{
-        return false
-      }
+    const data={
+      acno,psw
     }
-    else{
-      return false
-    }
+    return this.http.post('http://localhost:3000/login',data)
   }
 
   deposit(acno:any,psw:any,amnt:any){
-
-    var userDetails=this.userDetails
-    var amt=parseInt(amnt)
-
-
-    if(acno in userDetails){
-      if(psw==userDetails[acno]["password"]){
-        userDetails[acno]["balance"]+=amt
-        userDetails[acno]['transaction'].push({type:'Credit',amount:amt})
-        this.savedetails()
-        return userDetails[acno]["balance"]
-      }
-      else{
-        alert("Incorrect password")
-      }
+    const data={
+      acno,psw,amnt
     }
-    else{
-      alert("Incorrect Account number")
+    return this.http.post('http://localhost:3000/deposit',data,this.gettoken())
     }
-  }
+   
+  
 
   withdraw(acntno:any,pswd:any,amt:any){
-    var userDetails= this.userDetails
-    var amnt=parseInt(amt)
-
-    if(acntno in userDetails){
-      if(pswd==userDetails[acntno]["password"]){
-        if(amnt<=userDetails[acntno]['balance']){
-
-          userDetails[acntno]['balance']-=amnt
-          userDetails[acntno]['transaction'].push({type:'Debit',amount:amnt})
-          this.savedetails()
-          return userDetails[acntno]['balance']
-        }
-        else{
-          alert('Insufficient Balance')
-        }
-      }
-      else{
-        alert("Incorrect password")
-      }
+    const data={
+      acntno,pswd,amt
     }
-    else{
-      alert("Incorrect Account number")
-    }
+    return this.http.post('http://localhost:3000/withdraw',data,this.gettoken())
   }
 
   gettransaction(acno1:any){
