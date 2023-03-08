@@ -10,8 +10,10 @@ export class TransactionComponent {
   transaction:any
   acno1:any
   constructor(private data:DataService){
-    this.acno1=this.data.currentaccount
-    this.transaction=this.data.gettransaction(this.acno1)
+    this.acno1=JSON.parse(localStorage.getItem('currentaccount')||"")
+    this.data.gettransaction(this.acno1).subscribe((result:any)=>{
+      this.transaction=result.message
+    })
   }
 
   

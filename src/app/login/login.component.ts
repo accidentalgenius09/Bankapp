@@ -14,8 +14,6 @@ export class LoginComponent {
   }
   aim = "Your perfect banking partner";
   data = "Account Number";
-  // acno:any
-  // psw:any
 
   constructor(
     private router: Router,

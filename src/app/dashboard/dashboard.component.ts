@@ -59,7 +59,7 @@ export class DashboardComponent {
         `Rs:${amt} withdrawed successfully. Updated balance is Rs:${result.message}`
       );
     },result=>{
-      alert("Check Account number or password");
+      alert(result.error.message);
     })
   }
   logout() {
