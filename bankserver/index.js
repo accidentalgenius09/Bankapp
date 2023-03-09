@@ -115,6 +115,13 @@ app.post('/transaction',jwtmiddleware,(req,res)=>{
 
 })
 
+//delete
+app.delete('/deleteacnt/:acno',jwtmiddleware,(req,res)=>{
+    dataservice.acntdelete(req.params.acno).then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+})
+
 //create port number
 app.listen(3000,()=>{
     console.log("Server Running Successfully");

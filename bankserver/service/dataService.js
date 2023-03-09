@@ -128,11 +128,30 @@ withdraw=(acntno,pswd,amt)=>{
       }
     })
   }
+
+  acntdelete=(acno)=>{
+    return db.User.deleteOne({acno}).then(user=>{
+      if(user){
+        return{
+          statusCode: 200,
+          status: true,
+          message:'Account Deleted'
+        }
+      }
+      else{
+        return{
+          statusCode: 401,
+          status: false,
+          message:"Incorrect Account Number"
+      }
+      }
+    })
+  }
 module.exports = {
   register,
   login,
   deposit,
   withdraw,
   gettransaction,
-  
+  acntdelete
 };

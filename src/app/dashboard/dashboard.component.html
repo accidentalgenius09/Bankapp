@@ -1,6 +1,6 @@
 
 
-                                                    <!-- Deposit -->
+                                                    
 
 <h2>Welcome {{user}}</h2>
 <p class="text-white mx-4">{{dateNtime | date  : 'medium'}}</p>
@@ -9,8 +9,9 @@
 <button class="btn btn-primary m-3" type="submit" (click)="delete()">Delete Account</button>
 
 
-<app-deleteconfirm (onCancel)="oncancel()" [item]="acno"></app-deleteconfirm>
+<app-deleteconfirm (onDelete)="ondel($event)" (onCancel)="oncancel()" [item]="acno"></app-deleteconfirm>
 
+                                                            <!-- Deposit -->
 
 <div [ngClass]="acno?'style':''" class="container w-50 bgclr mt-5 rounded">
     <br>

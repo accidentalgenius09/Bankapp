@@ -12,9 +12,13 @@ export class DeleteconfirmComponent {
 
   //event creation
   @Output() onCancel=new EventEmitter()
+  @Output() onDelete=new EventEmitter()
 
   cancel(){
     this.onCancel.emit()
+  }
+  del(){
+    this.onDelete.emit(this.item)
   }
 
 }

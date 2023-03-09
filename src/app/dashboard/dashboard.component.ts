@@ -22,7 +22,9 @@ export class DashboardComponent {
     private fb: FormBuilder,
     private router: Router
   ) {
-    this.user = JSON.parse(localStorage.getItem('currentuser') || '')
+    if(localStorage.getItem('currentuser')){
+      this.user = JSON.parse(localStorage.getItem('currentuser') || '')
+    }
     this.dateNtime = new Date();
   }
   dashForm = this.fb.group({
@@ -34,10 +36,10 @@ export class DashboardComponent {
     amt: ["", [Validators.required, Validators.pattern("[0-9]+")]],
   });
   ngOnInit(): void {
-    // if (!localStorage.getItem("currentacnt")) {
-    //   alert("Please Login 1st");
-    //   this.router.navigateByUrl("");
-    // }
+    if (!localStorage.getItem("token")) {
+      alert("Please Login 1st");
+      this.router.navigateByUrl("");
+    }
   }
   deposit() {
     var amnt = this.dashForm.value.amnt;
@@ -65,13 +67,23 @@ export class DashboardComponent {
   logout() {
     localStorage.removeItem("currentuser");
     localStorage.removeItem("currentacnt");
+    localStorage.removeItem('token');
     this.router.navigateByUrl("");
   }
 
   delete() {
-    this.acno = JSON.parse(localStorage.getItem("currentacnt") || "");
+    this.acno = JSON.parse(localStorage.getItem('currentaccount') || '');
   }
   oncancel() {
     this.acno = "";
+  }
+  ondel(event:any){
+    this.ds.deleteAcnt(event).subscribe((result:any)=>{
+      alert(result.message)
+      this.logout()
+    },result=>{
+      result.error.message
+    })
+    // alert(event)
   }
 }

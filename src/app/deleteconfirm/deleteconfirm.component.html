@@ -4,7 +4,7 @@
     <br>
     <div *ngIf="item"class="bgclr text-center text-white rounded w-50 container p-4">
       <h4>Are you sure want to delete account?</h4>
-      <button class="btn btn-outline-primary m-3 px-5 btn-">Yes</button>
+      <button class="btn btn-outline-primary m-3 px-5 btn-" (click)="del()">Yes</button>
       <button class="btn btn-outline-primary m-3 px-5 btn-" (click)="cancel()">No</button>
     </div>
   </div>
